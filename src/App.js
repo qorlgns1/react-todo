@@ -25,7 +25,7 @@ const App = () => {
   const onInsert = useCallback((text) => {
     const todo = {
       id: nextId.current,
-      text,
+      text: `할 일 ${nextId.current}`,
       checked: false,
     };
     setTodos((todos) => todos.concat(todo));
@@ -36,16 +36,13 @@ const App = () => {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
   }, []);
 
-  const onToggle = useCallback(
-    (id) => {
-      setTodos((todos) =>
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
-        ),
-      );
-    },
-    [todos],
-  );
+  const onToggle = useCallback((id) => {
+    setTodos((todos) =>
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+      ),
+    );
+  }, []);
 
   return (
     <TodoTemplate>
